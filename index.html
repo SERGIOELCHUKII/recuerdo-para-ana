@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Ana ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background: #02030b;
+            color: white;
+        }
+
+        /* =========================
+           FONDO
+        ========================= */
+
+        .sky {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at 50% 45%,
+                    rgba(43, 53, 110, 0.25),
+                    transparent 45%
+                ),
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(80, 60, 120, 0.15),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    180deg,
+                    #02030b 0%,
+                    #050817 50%,
+                    #02030b 100%
+                );
+        }
+
+        /* estrellas */
+
+        .stars {
+            position: absolute;
+            inset: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: white;
+            opacity: 0.7;
+            animation: twinkle infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.4);
+            }
+        }
+
+        /* estrellas grandes */
+
+        .bright-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow:
+                0 0 8px white,
+                0 0 18px rgba(255,255,255,0.8);
+            animation: brightTwinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes brightTwinkle {
+            0%, 100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* =========================
+           CONTENIDO
+        ========================= */
+
+        .page {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+
+            animation: appear 2s ease forwards;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           CORAZÓN
+        ========================= */
+
+        .heart {
+            font-size: 38px;
+            margin-bottom: 25px;
+
+            animation:
+                heartbeat 2.5s infinite ease-in-out,
+                heartAppear 1.5s ease forwards;
+
+            filter:
+                drop-shadow(0 0 8px rgba(255, 150, 180, 0.5));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+        }
+
+        @keyframes heartAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* =========================
+           TITULO
+        ========================= */
+
+        .title {
+            font-size: clamp(38px, 8vw, 65px);
+            font-weight: normal;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+
+            text-shadow:
+                0 0 15px rgba(255,255,255,0.15);
+        }
+
+        .subtitle {
+            font-size: clamp(18px, 4vw, 23px);
+            line-height: 1.7;
+            color: rgba(255,255,255,0.78);
+            font-style: italic;
+            margin: 0 auto 45px;
+            max-width: 500px;
+        }
+
+        /* =========================
+           BOTÓN
+        ========================= */
+
+        .button {
+            position: relative;
+
+            border: 1px solid rgba(255, 210, 180, 0.75);
+            background: rgba(255,255,255,0.035);
+
+            color: white;
+
+            padding: 17px 34px;
+
+            border-radius: 999px;
+
+            font-family: Georgia, serif;
+            font-size: 14px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(10px);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+
+            background: rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 0 25px rgba(255, 200, 170, 0.12);
+        }
+
+        .button:active {
+            transform: scale(0.97);
+        }
+
+        /* =========================
+           PANTALLA CONTRASEÑA
+        ========================= */
+
+        .password-screen {
+            position: fixed;
+            inset: 0;
+
+            z-index: 100;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+
+            background: rgba(1, 2, 9, 0.92);
+
+            backdrop-filter: blur(15px);
+
+            opacity: 0;
+            pointer-events: none;
+
+            transition: opacity 0.8s ease;
+        }
+
+        .password-screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .password-box {
+            width: 100%;
+            max-width: 420px;
+
+            text-align: center;
+
+            padding: 40px 25px;
+
+            animation: passwordAppear 0.8s ease forwards;
+        }
+
+        @keyframes passwordAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .password-heart {
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .password-title {
+            font-size: 28px;
+            font-weight: normal;
+            margin-bottom: 18px;
+        }
+
+        .password-text {
+            color: rgba(255,255,255,0.65);
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .password-input {
+            width: 100%;
+
+            background: rgba(255,255,255,0.04);
+
+            border: 1px solid rgba(255,255,255,0.25);
+
+            color: white;
+
+            border-radius: 12px;
+
+            padding: 16px;
+
+            text-align: center;
+
+            font-size: 18px;
+
+            outline: none;
+
+            font-family: Georgia, serif;
+
+            transition:
+                border 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .password-input:focus {
+            border-color: rgba(255,210,180,0.8);
+
+            box-shadow:
+                0 0 20px rgba(255,200,170,0.08);
+        }
+
+        .enter-button {
+            margin-top: 20px;
+        }
+
+        .error {
+            height: 22px;
+
+            margin-top: 18px;
+
+            color: #e9b1b1;
+
+            font-size: 14px;
+
+            opacity: 0;
+
+            transition: opacity 0.3s ease;
+        }
+
+        .error.show {
+            opacity: 1;
+        }
+
+        /* =========================
+           TRANSICIÓN
+        ========================= */
+
+        .transition-screen {
+            position: fixed;
+            inset: 0;
+
+            z-index: 200;
+
+            background: #02030b;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transition: opacity 1.5s ease;
+        }
+
+        .transition-screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* =========================
+           MÓVIL
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .content {
+                padding: 10px;
+            }
+
+            .heart {
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+
+            .subtitle {
+                line-height: 1.6;
+                margin-bottom: 35px;
+            }
+
+            .button {
+                padding: 16px 28px;
+            }
+
+            .password-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         CIELO
+    ========================= -->
+
+    <div class="sky">
+
+        <div class="stars" id="stars"></div>
+
+        <div class="bright-star" style="top:18%; left:23%;"></div>
+        <div class="bright-star" style="top:32%; left:78%; animation-delay:1s;"></div>
+        <div class="bright-star" style="top:70%; left:17%; animation-delay:2s;"></div>
+        <div class="bright-star" style="top:77%; left:82%; animation-delay:0.5s;"></div>
+
+    </div>
+
+
+    <!-- =========================
+         PÁGINA PRINCIPAL
+    ========================= -->
+
+    <main class="page">
+
+        <section class="content">
+
+            <div class="heart">
+                ❤️
+            </div>
+
+            <h1 class="title">
+                Para Ana
+            </h1>
+
+            <p class="subtitle">
+                Hay recuerdos que el tiempo
+                nunca consigue borrar.
+            </p>
+
+            <button
+                class="button"
+                id="openButton"
+            >
+                ABRIR RECUERDO ❤️
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         CONTRASEÑA
+    ========================= -->
+
+    <section
+        class="password-screen"
+        id="passwordScreen"
+    >
+
+        <div class="password-box">
+
+            <div class="password-heart">
+                ❤️
+            </div>
+
+            <h2 class="password-title">
+                Para entrar a este recuerdo
+            </h2>
+
+            <p class="password-text">
+                Introduce la contraseña
+            </p>
+
+            <input
+                type="password"
+                class="password-input"
+                id="passwordInput"
+                placeholder="••••••••"
+                autocomplete="off"
+            >
+
+            <button
+                class="button enter-button"
+                id="enterButton"
+            >
+                ENTRAR
+            </button>
+
+            <div
+                class="error"
+                id="error"
+            >
+                Esa no es la contraseña ❤️
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TRANSICIÓN
+    ========================= -->
+
+    <div
+        class="transition-screen"
+        id="transitionScreen"
+    ></div>
+
+
+    <script>
+
+        /* =========================
+           CREAR ESTRELLAS
+        ========================= */
+
+        const starsContainer =
+            document.getElementById("stars");
+
+        for (let i = 0; i < 140; i++) {
+
+            const star =
+                document.createElement("div");
+
+            star.classList.add("star");
+
+            star.style.left =
+                Math.random() * 100 + "%";
+
+            star.style.top =
+                Math.random() * 100 + "%";
+
+            const size =
+                Math.random() * 2 + 1;
+
+            star.style.width =
+                size + "px";
+
+            star.style.height =
+                size + "px";
+
+            star.style.animationDuration =
+                (Math.random() * 4 + 2) + "s";
+
+            star.style.animationDelay =
+                (Math.random() * 5) + "s";
+
+            starsContainer.appendChild(star);
+        }
+
+
+        /* =========================
+           ELEMENTOS
+        ========================= */
+
+        const openButton =
+            document.getElementById("openButton");
+
+        const passwordScreen =
+            document.getElementById("passwordScreen");
+
+        const passwordInput =
+            document.getElementById("passwordInput");
+
+        const enterButton =
+            document.getElementById("enterButton");
+
+        const error =
+            document.getElementById("error");
+
+        const transitionScreen =
+            document.getElementById("transitionScreen");
+
+
+        /* =========================
+           ABRIR CONTRASEÑA
+        ========================= */
+
+        openButton.addEventListener(
+            "click",
+            () => {
+
+                passwordScreen.classList.add("active");
+
+                setTimeout(() => {
+                    passwordInput.focus();
+                }, 700);
+
+            }
+        );
+
+
+        /* =========================
+           CONTRASEÑA
+        ========================= */
+
+        /*
+            ESTA ES TEMPORAL.
+
+            Más adelante elegiremos
+            la contraseña definitiva
+            mediante las pistas de los
+            otros regalos.
+        */
+
+        const PASSWORD =
+            "RECUERDO";
+
+
+        function checkPassword() {
+
+            const value =
+                passwordInput.value
+                    .trim()
+                    .toUpperCase();
+
+            if (value === PASSWORD) {
+
+                error.classList.remove("show");
+
+                transitionScreen.classList.add("active");
+
+                setTimeout(() => {
+
+                    /*
+                        AQUÍ EN EL FUTURO
+                        COMENZARÁ EL VÍDEO
+                        / ANIMACIÓN PRINCIPAL.
+                    */
+
+                    alert(
+                        "Contraseña correcta ❤️\n\nAquí comenzará próximamente el recuerdo."
+                    );
+
+                    transitionScreen.classList.remove("active");
+
+                }, 1500);
+
+            } else {
+
+                error.classList.add("show");
+
+                passwordInput.value = "";
+
+                passwordInput.focus();
+
+            }
+        }
+
+
+        enterButton.addEventListener(
+            "click",
+            checkPassword
+        );
+
+
+        /* ENTER DEL TECLADO */
+
+        passwordInput.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (event.key === "Enter") {
+                    checkPassword();
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
