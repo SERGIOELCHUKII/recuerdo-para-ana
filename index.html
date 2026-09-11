@@ -1,702 +1,637 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Para Ana ❤️</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        body {
-            font-family: Georgia, "Times New Roman", serif;
-            background: #02030b;
-            color: white;
-        }
-
-        /* =========================
-           FONDO
-        ========================= */
-
-        .sky {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            background:
-                radial-gradient(
-                    circle at 50% 45%,
-                    rgba(43, 53, 110, 0.25),
-                    transparent 45%
-                ),
-                radial-gradient(
-                    circle at 20% 20%,
-                    rgba(80, 60, 120, 0.15),
-                    transparent 35%
-                ),
-                linear-gradient(
-                    180deg,
-                    #02030b 0%,
-                    #050817 50%,
-                    #02030b 100%
-                );
-        }
-
-        /* estrellas */
-
-        .stars {
-            position: absolute;
-            inset: 0;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            border-radius: 50%;
-            background: white;
-            opacity: 0.7;
-            animation: twinkle infinite ease-in-out;
-        }
-
-        @keyframes twinkle {
-            0%, 100% {
-                opacity: 0.2;
-                transform: scale(0.8);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.4);
-            }
-        }
-
-        /* estrellas grandes */
-
-        .bright-star {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
-            box-shadow:
-                0 0 8px white,
-                0 0 18px rgba(255,255,255,0.8);
-            animation: brightTwinkle 3s infinite ease-in-out;
-        }
-
-        @keyframes brightTwinkle {
-            0%, 100% {
-                opacity: 0.3;
-            }
-
-            50% {
-                opacity: 1;
-            }
-        }
-
-        /* =========================
-           CONTENIDO
-        ========================= */
-
-        .page {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 25px;
-        }
-
-        .content {
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-
-            animation: appear 2s ease forwards;
-        }
-
-        @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* =========================
-           CORAZÓN
-        ========================= */
-
-        .heart {
-            font-size: 38px;
-            margin-bottom: 25px;
-
-            animation:
-                heartbeat 2.5s infinite ease-in-out,
-                heartAppear 1.5s ease forwards;
-
-            filter:
-                drop-shadow(0 0 8px rgba(255, 150, 180, 0.5));
-        }
-
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.12);
-            }
-        }
-
-        @keyframes heartAppear {
-            from {
-                opacity: 0;
-                transform: scale(0.5);
-            }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Para Ana ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #02030a;
+    color: #fff;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* =========================
+   CIELO
+========================= */
+
+.sky {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 45%,
+            rgba(42, 48, 100, 0.30) 0%,
+            rgba(12, 16, 42, 0.18) 35%,
+            transparent 65%
+        ),
+        radial-gradient(
+            ellipse at 20% 10%,
+            rgba(72, 55, 105, 0.16),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            #010208 0%,
+            #030615 48%,
+            #010208 100%
+        );
+}
+
+/* ligera niebla */
+
+.sky::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,255,255,0.035),
+            transparent 55%
+        );
+
+    filter: blur(45px);
+
+    animation: atmosphere 12s ease-in-out infinite alternate;
+}
+
+@keyframes atmosphere {
+    from {
+        transform: translate(-2%, -1%) scale(1);
+    }
+
+    to {
+        transform: translate(2%, 2%) scale(1.05);
+    }
+}
+
+/* =========================
+   ESTRELLAS
+========================= */
+
+.stars {
+    position: absolute;
+    inset: 0;
+}
+
+.star {
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+    background: #fff;
+
+    opacity: 0.5;
 
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* =========================
-           TITULO
-        ========================= */
-
-        .title {
-            font-size: clamp(38px, 8vw, 65px);
-            font-weight: normal;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+    animation:
+        twinkle var(--duration) ease-in-out infinite;
+}
 
-            text-shadow:
-                0 0 15px rgba(255,255,255,0.15);
-        }
+@keyframes twinkle {
 
-        .subtitle {
-            font-size: clamp(18px, 4vw, 23px);
-            line-height: 1.7;
-            color: rgba(255,255,255,0.78);
-            font-style: italic;
-            margin: 0 auto 45px;
-            max-width: 500px;
-        }
+    0%,
+    100% {
+        opacity: 0.15;
+        transform: scale(0.7);
+    }
 
-        /* =========================
-           BOTÓN
-        ========================= */
+    50% {
+        opacity: 0.95;
+        transform: scale(1.35);
+    }
+}
 
-        .button {
-            position: relative;
-
-            border: 1px solid rgba(255, 210, 180, 0.75);
-            background: rgba(255,255,255,0.035);
-
-            color: white;
-
-            padding: 17px 34px;
-
-            border-radius: 999px;
-
-            font-family: Georgia, serif;
-            font-size: 14px;
-
-            letter-spacing: 2px;
-
-            cursor: pointer;
+/* =========================
+   ESTRELLAS IMPORTANTES
+========================= */
 
-            backdrop-filter: blur(10px);
+.special-star {
+    position: absolute;
 
-            transition:
-                transform 0.3s ease,
-                background 0.3s ease,
-                box-shadow 0.3s ease;
-        }
+    width: 4px;
+    height: 4px;
 
-        .button:hover {
-            transform: translateY(-3px);
+    border-radius: 50%;
 
-            background: rgba(255,255,255,0.08);
+    background: white;
 
-            box-shadow:
-                0 0 25px rgba(255, 200, 170, 0.12);
-        }
+    box-shadow:
+        0 0 8px rgba(255,255,255,0.8),
+        0 0 22px rgba(255,255,255,0.45);
 
-        .button:active {
-            transform: scale(0.97);
-        }
+    animation:
+        specialTwinkle 4s ease-in-out infinite;
+}
 
-        /* =========================
-           PANTALLA CONTRASEÑA
-        ========================= */
+.special-star::before,
+.special-star::after {
+    content: "";
+    position: absolute;
 
-        .password-screen {
-            position: fixed;
-            inset: 0;
+    left: 50%;
+    top: 50%;
 
-            z-index: 100;
+    transform: translate(-50%, -50%);
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    background: rgba(255,255,255,0.45);
+}
 
-            padding: 25px;
+.special-star::before {
+    width: 30px;
+    height: 1px;
+}
 
-            background: rgba(1, 2, 9, 0.92);
+.special-star::after {
+    width: 1px;
+    height: 30px;
+}
 
-            backdrop-filter: blur(15px);
+@keyframes specialTwinkle {
 
-            opacity: 0;
-            pointer-events: none;
+    0%,
+    100% {
+        opacity: 0.25;
+        transform: scale(0.7);
+    }
 
-            transition: opacity 0.8s ease;
-        }
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
 
-        .password-screen.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+/* posiciones */
 
-        .password-box {
-            width: 100%;
-            max-width: 420px;
+.star-1 {
+    top: 17%;
+    left: 22%;
+}
 
-            text-align: center;
+.star-2 {
+    top: 29%;
+    left: 78%;
+    animation-delay: 1.3s;
+}
 
-            padding: 40px 25px;
+.star-3 {
+    top: 72%;
+    left: 16%;
+    animation-delay: 2s;
+}
 
-            animation: passwordAppear 0.8s ease forwards;
-        }
+.star-4 {
+    top: 78%;
+    left: 84%;
+    animation-delay: 0.7s;
+}
 
-        @keyframes passwordAppear {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.97);
-            }
+/* =========================
+   CONTENIDO
+========================= */
 
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
+.main {
+    position: relative;
+    z-index: 10;
 
-        .password-heart {
-            font-size: 30px;
-            margin-bottom: 25px;
-        }
+    width: 100%;
+    height: 100%;
 
-        .password-title {
-            font-size: 28px;
-            font-weight: normal;
-            margin-bottom: 18px;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        .password-text {
-            color: rgba(255,255,255,0.65);
-            font-size: 16px;
-            margin-bottom: 30px;
-        }
+    padding:
+        max(24px, env(safe-area-inset-top))
+        max(24px, env(safe-area-inset-right))
+        max(24px, env(safe-area-inset-bottom))
+        max(24px, env(safe-area-inset-left));
+}
 
-        .password-input {
-            width: 100%;
+.content {
+    width: min(90vw, 650px);
 
-            background: rgba(255,255,255,0.04);
+    text-align: center;
 
-            border: 1px solid rgba(255,255,255,0.25);
+    animation: contentAppear 2s cubic-bezier(.2,.7,.2,1);
+}
 
-            color: white;
+@keyframes contentAppear {
 
-            border-radius: 12px;
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
 
-            padding: 16px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-            text-align: center;
+/* =========================
+   CORAZÓN
+========================= */
 
-            font-size: 18px;
+.heart {
+    font-size: clamp(28px, 4vw, 38px);
 
-            outline: none;
+    margin-bottom: clamp(18px, 3vh, 28px);
 
-            font-family: Georgia, serif;
+    filter:
+        drop-shadow(
+            0 0 14px rgba(255, 150, 175, 0.35)
+        );
 
-            transition:
-                border 0.3s ease,
-                box-shadow 0.3s ease;
-        }
+    animation: heartbeat 3s ease-in-out infinite;
+}
 
-        .password-input:focus {
-            border-color: rgba(255,210,180,0.8);
+@keyframes heartbeat {
 
-            box-shadow:
-                0 0 20px rgba(255,200,170,0.08);
-        }
+    0%,
+    100% {
+        transform: scale(1);
+    }
 
-        .enter-button {
-            margin-top: 20px;
-        }
+    50% {
+        transform: scale(1.08);
+    }
+}
 
-        .error {
-            height: 22px;
+/* =========================
+   TITULO
+========================= */
 
-            margin-top: 18px;
+.title {
+    font-size: clamp(42px, 7vw, 72px);
 
-            color: #e9b1b1;
+    font-weight: normal;
 
-            font-size: 14px;
+    letter-spacing: 1px;
 
-            opacity: 0;
+    margin-bottom: clamp(14px, 2vh, 22px);
 
-            transition: opacity 0.3s ease;
-        }
+    text-shadow:
+        0 0 20px rgba(255,255,255,0.08);
+}
 
-        .error.show {
-            opacity: 1;
-        }
+/* =========================
+   FRASE
+========================= */
 
-        /* =========================
-           TRANSICIÓN
-        ========================= */
+.subtitle {
+    max-width: 510px;
 
-        .transition-screen {
-            position: fixed;
-            inset: 0;
+    margin: 0 auto;
 
-            z-index: 200;
+    color: rgba(255,255,255,0.72);
 
-            background: #02030b;
+    font-size: clamp(17px, 2.5vw, 22px);
 
-            opacity: 0;
-            pointer-events: none;
+    line-height: 1.75;
 
-            transition: opacity 1.5s ease;
-        }
+    font-style: italic;
 
-        .transition-screen.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+    margin-bottom: clamp(32px, 6vh, 52px);
+}
 
-        /* =========================
-           MÓVIL
-        ========================= */
+/* =========================
+   BOTÓN
+========================= */
 
-        @media (max-width: 600px) {
+.button-container {
+    position: relative;
 
-            .content {
-                padding: 10px;
-            }
+    display: inline-block;
+}
 
-            .heart {
-                font-size: 32px;
-                margin-bottom: 20px;
-            }
+.button-glow {
+    position: absolute;
 
-            .subtitle {
-                line-height: 1.6;
-                margin-bottom: 35px;
-            }
+    inset: -12px;
 
-            .button {
-                padding: 16px 28px;
-            }
+    border-radius: 999px;
 
-            .password-box {
-                padding: 30px 20px;
-            }
-        }
-    </style>
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,205,180,0.16),
+            transparent 70%
+        );
+
+    filter: blur(12px);
+
+    opacity: 0.7;
+
+    animation: buttonGlow 3s ease-in-out infinite;
+}
+
+@keyframes buttonGlow {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(0.95);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.04);
+    }
+}
+
+.button {
+    position: relative;
+    z-index: 2;
+
+    min-width: 230px;
+
+    padding: 17px 30px;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(255,220,200,0.55);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.025)
+        );
+
+    color: white;
+
+    font-family: Georgia, serif;
+
+    font-size: 13px;
+
+    letter-spacing: 2.5px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(12px);
+
+    -webkit-backdrop-filter: blur(12px);
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
+}
+
+.button:hover {
+
+    transform: translateY(-3px);
+
+    border-color: rgba(255,225,210,0.9);
+
+    background:
+        rgba(255,255,255,0.09);
+
+    box-shadow:
+        0 8px 35px rgba(0,0,0,0.35),
+        0 0 25px rgba(255,200,170,0.08);
+}
+
+.button:active {
+    transform: scale(.97);
+}
+
+/* =========================
+   INDICADOR INFERIOR
+========================= */
+
+.hint {
+    margin-top: 30px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,0.3);
+
+    text-transform: uppercase;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    .content {
+        width: min(88vw, 500px);
+    }
+
+    .title {
+        font-size: clamp(42px, 13vw, 60px);
+    }
+
+    .subtitle {
+        font-size: 17px;
+        line-height: 1.7;
+        padding: 0 8px;
+    }
+
+    .button {
+        min-width: 215px;
+        padding: 16px 25px;
+    }
+
+    .hint {
+        margin-top: 25px;
+    }
+}
+
+/* tablets */
+
+@media (min-width: 601px) and (max-width: 1100px) {
+
+    .content {
+        width: 75vw;
+    }
+}
+
+/* pantallas muy altas */
+
+@media (min-height: 850px) {
+
+    .content {
+        transform: translateY(-2vh);
+    }
+}
+
+/* reducir animaciones si el dispositivo lo solicita */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+</style>
 </head>
+
 
 <body>
 
-    <!-- =========================
-         CIELO
-    ========================= -->
+<!-- =========================
+     CIELO
+========================= -->
 
-    <div class="sky">
+<div class="sky">
 
-        <div class="stars" id="stars"></div>
+    <div class="stars" id="stars"></div>
 
-        <div class="bright-star" style="top:18%; left:23%;"></div>
-        <div class="bright-star" style="top:32%; left:78%; animation-delay:1s;"></div>
-        <div class="bright-star" style="top:70%; left:17%; animation-delay:2s;"></div>
-        <div class="bright-star" style="top:77%; left:82%; animation-delay:0.5s;"></div>
+    <div class="special-star star-1"></div>
+    <div class="special-star star-2"></div>
+    <div class="special-star star-3"></div>
+    <div class="special-star star-4"></div>
 
-    </div>
+</div>
 
 
-    <!-- =========================
-         PÁGINA PRINCIPAL
-    ========================= -->
+<!-- =========================
+     CONTENIDO
+========================= -->
 
-    <main class="page">
+<main class="main">
 
-        <section class="content">
+    <div class="content">
 
-            <div class="heart">
-                ❤️
-            </div>
+        <div class="heart">
+            ❤️
+        </div>
 
-            <h1 class="title">
-                Para Ana
-            </h1>
+        <h1 class="title">
+            Para Ana
+        </h1>
 
-            <p class="subtitle">
-                Hay recuerdos que el tiempo
-                nunca consigue borrar.
-            </p>
+        <p class="subtitle">
+            Hay recuerdos que el tiempo
+            nunca consigue borrar.
+        </p>
+
+        <div class="button-container">
+
+            <div class="button-glow"></div>
 
             <button
                 class="button"
-                id="openButton"
+                onclick="openMemory()"
             >
                 ABRIR RECUERDO ❤️
             </button>
 
-        </section>
-
-    </main>
-
-
-    <!-- =========================
-         CONTRASEÑA
-    ========================= -->
-
-    <section
-        class="password-screen"
-        id="passwordScreen"
-    >
-
-        <div class="password-box">
-
-            <div class="password-heart">
-                ❤️
-            </div>
-
-            <h2 class="password-title">
-                Para entrar a este recuerdo
-            </h2>
-
-            <p class="password-text">
-                Introduce la contraseña
-            </p>
-
-            <input
-                type="password"
-                class="password-input"
-                id="passwordInput"
-                placeholder="••••••••"
-                autocomplete="off"
-            >
-
-            <button
-                class="button enter-button"
-                id="enterButton"
-            >
-                ENTRAR
-            </button>
-
-            <div
-                class="error"
-                id="error"
-            >
-                Esa no es la contraseña ❤️
-            </div>
-
         </div>
 
-    </section>
+        <div class="hint">
+            Un recuerdo para siempre
+        </div>
+
+    </div>
+
+</main>
 
 
-    <!-- =========================
-         TRANSICIÓN
-    ========================= -->
+<script>
 
-    <div
-        class="transition-screen"
-        id="transitionScreen"
-    ></div>
+/* =========================
+   GENERAR ESTRELLAS
+========================= */
 
+const stars =
+    document.getElementById("stars");
 
-    <script>
+const numberOfStars =
+    window.innerWidth < 600
+        ? 90
+        : 160;
 
-        /* =========================
-           CREAR ESTRELLAS
-        ========================= */
+for (
+    let i = 0;
+    i < numberOfStars;
+    i++
+) {
 
-        const starsContainer =
-            document.getElementById("stars");
+    const star =
+        document.createElement("div");
 
-        for (let i = 0; i < 140; i++) {
+    star.className = "star";
 
-            const star =
-                document.createElement("div");
+    star.style.left =
+        Math.random() * 100 + "%";
 
-            star.classList.add("star");
+    star.style.top =
+        Math.random() * 100 + "%";
 
-            star.style.left =
-                Math.random() * 100 + "%";
+    const size =
+        Math.random() < 0.8
+            ? Math.random() * 1.5 + 0.5
+            : Math.random() * 2 + 1;
 
-            star.style.top =
-                Math.random() * 100 + "%";
+    star.style.width =
+        size + "px";
 
-            const size =
-                Math.random() * 2 + 1;
+    star.style.height =
+        size + "px";
 
-            star.style.width =
-                size + "px";
+    star.style.setProperty(
+        "--duration",
+        (Math.random() * 4 + 3) + "s"
+    );
 
-            star.style.height =
-                size + "px";
+    star.style.animationDelay =
+        (Math.random() * 5) + "s";
 
-            star.style.animationDuration =
-                (Math.random() * 4 + 2) + "s";
-
-            star.style.animationDelay =
-                (Math.random() * 5) + "s";
-
-            starsContainer.appendChild(star);
-        }
-
-
-        /* =========================
-           ELEMENTOS
-        ========================= */
-
-        const openButton =
-            document.getElementById("openButton");
-
-        const passwordScreen =
-            document.getElementById("passwordScreen");
-
-        const passwordInput =
-            document.getElementById("passwordInput");
-
-        const enterButton =
-            document.getElementById("enterButton");
-
-        const error =
-            document.getElementById("error");
-
-        const transitionScreen =
-            document.getElementById("transitionScreen");
+    stars.appendChild(star);
+}
 
 
-        /* =========================
-           ABRIR CONTRASEÑA
-        ========================= */
+/* =========================
+   ABRIR RECUERDO
+========================= */
 
-        openButton.addEventListener(
-            "click",
-            () => {
+function openMemory() {
 
-                passwordScreen.classList.add("active");
+    /*
+        ESTA FUNCIÓN LA USAREMOS
+        PARA ABRIR LA PANTALLA
+        DE CONTRASEÑA.
 
-                setTimeout(() => {
-                    passwordInput.focus();
-                }, 700);
+        Después añadiremos aquí
+        la transición cinematográfica.
+    */
 
-            }
-        );
+    alert("Aquí aparecerá la pantalla de contraseña ❤️");
 
+}
 
-        /* =========================
-           CONTRASEÑA
-        ========================= */
-
-        /*
-            ESTA ES TEMPORAL.
-
-            Más adelante elegiremos
-            la contraseña definitiva
-            mediante las pistas de los
-            otros regalos.
-        */
-
-        const PASSWORD =
-            "RECUERDO";
-
-
-        function checkPassword() {
-
-            const value =
-                passwordInput.value
-                    .trim()
-                    .toUpperCase();
-
-            if (value === PASSWORD) {
-
-                error.classList.remove("show");
-
-                transitionScreen.classList.add("active");
-
-                setTimeout(() => {
-
-                    /*
-                        AQUÍ EN EL FUTURO
-                        COMENZARÁ EL VÍDEO
-                        / ANIMACIÓN PRINCIPAL.
-                    */
-
-                    alert(
-                        "Contraseña correcta ❤️\n\nAquí comenzará próximamente el recuerdo."
-                    );
-
-                    transitionScreen.classList.remove("active");
-
-                }, 1500);
-
-            } else {
-
-                error.classList.add("show");
-
-                passwordInput.value = "";
-
-                passwordInput.focus();
-
-            }
-        }
-
-
-        enterButton.addEventListener(
-            "click",
-            checkPassword
-        );
-
-
-        /* ENTER DEL TECLADO */
-
-        passwordInput.addEventListener(
-            "keydown",
-            (event) => {
-
-                if (event.key === "Enter") {
-                    checkPassword();
-                }
-
-            }
-        );
-
-    </script>
+</script>
 
 </body>
 </html>
